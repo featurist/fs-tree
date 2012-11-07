@@ -1,0 +1,21 @@
+{
+  "name": "mktree",
+  "version": "0.0.1",
+  "description": "Directory hierarchy builder utility",
+  "main": "src/mktree.js",
+  "dependencies": {
+    "mkdirp": "*",
+    "async": "*"
+  },
+  "devDependencies": {
+    "pogo": "*",
+    "mocha": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "mocha -r pogo -r should spec/mktree_spec.pogo"
+  },
+  "repository": "",
+  "author": "Josh Chisholm",
+  "license": "BSD"
+}
