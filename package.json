@@ -1,11 +1,12 @@
 {
   "name": "mktree",
   "version": "0.0.1",
-  "description": "Directory hierarchy builder utility",
+  "description": "Builds a file system hierarchy and then destroys it",
   "main": "src/mktree.js",
   "dependencies": {
     "mkdirp": "*",
-    "async": "*"
+    "async": "*",
+    "rimraf": "~2.0.2"
   },
   "devDependencies": {
     "pogo": "*",

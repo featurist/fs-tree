@@ -34,3 +34,16 @@ Make a hierarchy under another directory like this:
       }
     }
 
+### Deleting the files you created
+
+Retain a reference to the original tree to destroy it later:
+
+    my tree = make tree ! {
+      subdir = {
+        file = "contents"
+      }
+    }
+    // later...
+    my tree.destroy !
+    
+Destroying the tree is equivalent to deleting all files, then all directories and their contents, (rm -rf on all directories).
