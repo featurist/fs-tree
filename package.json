@@ -1,20 +1,20 @@
 {
-  "name": "mktree",
+  "name": "fs-tree",
   "version": "0.0.1",
-  "description": "Builds a file system hierarchy and then destroys it",
-  "main": "src/mktree.js",
+  "description": "Builds hierarchies of directories and files",
+  "main": "fs-tree.js",
   "dependencies": {
-    "mkdirp": "*",
-    "async": "*",
-    "rimraf": "~2.0.2"
+    "mkdirp": "~0.3.5",
+    "async": "~0.2.9",
+    "rimraf": "~2.0.3"
   },
   "devDependencies": {
-    "pogo": "*",
-    "mocha": "*",
-    "should": "*"
+    "pogo": "~0.6.3",
+    "mocha": "~1.14.0",
+    "should": "~2.1.0"
   },
   "scripts": {
-    "test": "mocha -r pogo -r should spec/mktree_spec.pogo"
+    "test": "./node_modules/.bin/pogo -c ./fs-tree.pogo && ./node_modules/.bin/mocha test/*.pogo"
   },
   "repository": "",
   "author": "Josh Chisholm",

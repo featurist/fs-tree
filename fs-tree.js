@@ -25,9 +25,7 @@
         var writeFile;
         writeFile = function(filePath, written) {
             return mkdirp(path.dirname(filePath), function() {
-                return fs.writeFile(filePath, entries.files[filePath], function(err) {
-                    return written(err);
-                });
+                return fs.writeFile(filePath, entries.files[filePath], written);
             });
         };
         return async.forEachSeries(entries.dirs, mkdirp, function(err) {

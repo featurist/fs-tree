@@ -20,16 +20,15 @@ module.exports () =
 write (entries, done) =
     write file (file path, written) =
         mkdirp (path.dirname(file path))
-            fs.write file (file path, entries.files.(file path)) @(err)
-                written (err)
-    
+            fs.write file (file path, entries.files.(file path), written)
+
     async.for each series (entries.dirs, mkdirp) @(err)
         if (err)
             done (err)
         else
             async.for each (Object.keys (entries.files), write file) @(err)
-                done (err, destroyable (entries))    
-    
+                done (err, destroyable (entries))
+
 destroyable (entries) =
     {
         destroy (done) =
@@ -39,7 +38,7 @@ destroyable (entries) =
                 else
                     async.for each series (entries.dirs, rimraf, done)
     }
-        
+
 flatten (obj, prefix) =
     dirs = []
     files = {}

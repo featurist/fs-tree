@@ -1,17 +1,17 @@
 fs = require 'fs'
 rimraf = require 'rimraf'
-mktree = require '../src/mktree'
+fs tree = require '../fs-tree.js'
 
 (path) should contain (contents) =
     fs.read file sync(path, "utf-8").should.equal (contents)
 
-describe "mktree"
+describe "fs-tree"
 
     after
         rimraf.sync 'public'
-  
+
     it "makes directories and files from nested properties"
-        mktree! {
+        fs tree ! {
             public = {
                 scripts = {
                     "app.js" = "javascript"
@@ -23,7 +23,7 @@ describe "mktree"
         "public/index.html" should contain "<html />"
 
     it "makes directories and files from flat properties"
-        mktree! {
+        fs tree ! {
             "public/scripts/app.js" = "javascript"
             "public/index.html" = "<html />"
         }
@@ -31,24 +31,24 @@ describe "mktree"
         "public/index.html" should contain "<html />"
 
     it "accepts a base directory as an optional first argument"
-        mktree! "./public" { "index.html" = "ok!" }
+        fs tree ! "./public" { "index.html" = "ok!" }
         "./public/index.html" should contain "ok!"
-  
+
     it "overwrites files"
-        mktree! { public = { "index.html" = "overwrite me!" } }
-        mktree! { public = { "index.html" = "overwritten" } }
+        fs tree ! { public = { "index.html" = "overwrite me!" } }
+        fs tree ! { public = { "index.html" = "overwritten" } }
         "public/index.html" should contain "overwritten"
-  
+
     it "creates empty directories"
-        mktree! { public = { } }
+        fs tree ! { public = { } }
         fs.exists sync("./public").should.be.true
 
     it "destroys the tree it created"
-        tree = mktree! "public" { a = { b = "1" }, c = "2" }
+        tree = fs tree ! "public" { a = { b = "1" }, c = "2" }
         fs.exists sync "./public/a/b".should.be.true
         fs.exists sync "./public/c".should.be.true
         tree.destroy!
         fs.exists sync "./public".should.be.true
         fs.exists sync "./public/a".should.be.false
         fs.exists sync "./public/c".should.be.false
-    
+

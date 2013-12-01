@@ -1,12 +1,12 @@
-# mktree
+# fs-tree
 
 Builds a hierarchy of directories and files as a single asynchronous operation.
 
 ## Usage
 
-    make tree = require 'mktree'
-  
-    make tree ! {
+    fs tree = require 'fs-tree'
+
+    fs tree ! {
       ideas = {
         colours = {
           "green.txt" = "apples, pears"
@@ -14,7 +14,7 @@ Builds a hierarchy of directories and files as a single asynchronous operation.
         }
       }
     }
-    
+
 ...creates these directories and files:
 
     ./ideas/
@@ -28,7 +28,7 @@ By default the hierarchy is created in the current working directory.
 
 Make a hierarchy under another directory like this:
 
-    make tree "/base/directory" ! {
+    fs tree "/base/directory" ! {
       subdir = {
         file = "contents"
       }
@@ -38,12 +38,12 @@ Make a hierarchy under another directory like this:
 
 Retain a reference to the original tree to destroy it later:
 
-    my tree = make tree ! {
+    tree = fs tree ! {
       subdir = {
         file = "contents"
       }
     }
     // later...
-    my tree.destroy !
-    
+    tree.destroy !
+
 Destroying the tree is equivalent to deleting all files, then all directories and their contents, (rm -rf on all directories).
