@@ -2,7 +2,7 @@
 
 Builds a hierarchy of directories and files as a single asynchronous operation.
 
-## Usage (PogoScript)
+### Usage
 
     fs tree = require 'fs-tree'
 
@@ -50,3 +50,7 @@ Retain a reference to the original tree to destroy it later:
 Destroying the tree is equivalent to
 
     rm -rf <root directory>
+
+### JavaScript?
+
+The examples above are in [PogoScript](http://pogoscript.org) but there is no runtime dependency on Pogo. Use JavaScript if you want.
