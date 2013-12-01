@@ -2,6 +2,10 @@
 
 Builds a hierarchy of directories and files as a single asynchronous operation.
 
+### Install
+
+    npm install fs-tree
+
 ### Usage
 
     fs tree = require 'fs-tree'
