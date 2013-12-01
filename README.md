@@ -2,17 +2,17 @@
 
 Builds a hierarchy of directories and files as a single asynchronous operation.
 
-## Usage
+## Usage (PogoScript)
 
     fs tree = require 'fs-tree'
 
     fs tree ! {
-      ideas = {
-        colours = {
-          "green.txt" = "apples, pears"
-          "white.txt" = "snow"
+        ideas = {
+            colours = {
+                "green.txt" = "apples, pears"
+                "white.txt" = "snow"
+            }
         }
-      }
     }
 
 ...creates these directories and files:
@@ -28,10 +28,10 @@ By default the hierarchy is created in the current working directory.
 
 Make a hierarchy under another directory like this:
 
-    fs tree "/base/directory" ! {
-      subdir = {
-        file = "contents"
-      }
+    fs tree '/base/directory' ! {
+        subdir = {
+            file = "contents"
+        }
     }
 
 ### Deleting the files you created
@@ -39,11 +39,14 @@ Make a hierarchy under another directory like this:
 Retain a reference to the original tree to destroy it later:
 
     tree = fs tree ! {
-      subdir = {
-        file = "contents"
-      }
+        subdir = {
+            file = "contents"
+        }
     }
-    // later...
+
+    // then later...
     tree.destroy !
 
-Destroying the tree is equivalent to deleting all files, then all directories and their contents, (rm -rf on all directories).
+Destroying the tree is equivalent to
+
+    rm -rf <root directory>
