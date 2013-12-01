@@ -65,7 +65,9 @@ The examples above are in [PogoScript](http://pogoscript.org) because it's prett
             }
         }
     }, function(err) {
-        /* handle error */
+        if (!err) {
+            console.log("Tree created!");
+        }
     });
 
 ### License
