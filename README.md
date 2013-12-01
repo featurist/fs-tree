@@ -28,7 +28,7 @@ By default the hierarchy is created in the current working directory.
 
 Make a hierarchy under another directory like this:
 
-    fs tree '/base/directory' ! {
+    fs tree '/your/root/directory' ! {
         subdir = {
             file = "contents"
         }
@@ -53,4 +53,21 @@ Destroying the tree is equivalent to
 
 ### JavaScript?
 
-The examples above are in [PogoScript](http://pogoscript.org) but there is no runtime dependency on Pogo. Use JavaScript if you want.
+The examples above are in [PogoScript](http://pogoscript.org) because it's pretty. There is no dependency on PogoScript, so you can use pure JavaScript if you prefer:
+
+    var fsTree = require('fs-tree');
+
+    fsTree({
+        ideas: {
+            colours: {
+                "green.txt": "apples, pears",
+                "white.txt": "snow"
+            }
+        }
+    }, function(err) {
+        /* handle error */
+    });
+
+### License
+
+BSD
