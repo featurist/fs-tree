@@ -10,7 +10,7 @@ Builds a hierarchy of directories and files as a single asynchronous operation.
 
     fsTree = require 'fs-tree'
 
-    fsTree ! {
+    fsTree! {
       ideas = {
         colours = {
           "green.txt" = "apples, pears"
@@ -32,7 +32,7 @@ By default the hierarchy is created in the current working directory.
 
 Make a hierarchy under another directory like this:
 
-    fsTree '/your/root/directory' ! {
+    fsTree! '/your/root/directory' {
       subdir = {
         file = "contents"
       }
