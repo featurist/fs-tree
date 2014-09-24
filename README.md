@@ -57,7 +57,7 @@ Destroying the tree is equivalent to
 
 ### JavaScript?
 
-The examples above are in [PogoScript](http://pogoscript.org) because it's pretty. There is no dependency on PogoScript, so you can use pure JavaScript if you prefer:
+The examples above are in [PogoScript](http://pogoscript.org) because it's pretty. There is no dependency on PogoScript, so you can use pure JavaScript if you prefer. It returns a promise:
 
     var fsTree = require('fs-tree');
 
@@ -68,10 +68,10 @@ The examples above are in [PogoScript](http://pogoscript.org) because it's prett
                 "white.txt": "snow"
             }
         }
-    }, function(err) {
-        if (!err) {
-            console.log("Tree created!");
-        }
+    }).then(function() {
+      console.log("Tree created!");
+    }, function (error) {
+      console.log("uh oh", error);
     });
 
 ### License
