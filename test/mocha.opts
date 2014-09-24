@@ -1,1 +1,1 @@
--r should -r pogo
+-r should --compilers pogo:pogo

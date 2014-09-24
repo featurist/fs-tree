@@ -9,9 +9,10 @@
     "rimraf": "~2.0.3"
   },
   "devDependencies": {
-    "pogo": "~0.6.3",
-    "mocha": "~1.14.0",
-    "should": "~2.1.0"
+    "bluebird": "^2.3.2",
+    "mocha": "^1.21.4",
+    "pogo": "^0.9.5",
+    "should": "^4.0.4"
   },
   "scripts": {
     "test": "./node_modules/.bin/pogo -c ./fs-tree.pogo && ./node_modules/.bin/mocha test/*.pogo"

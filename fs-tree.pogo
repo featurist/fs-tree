@@ -4,56 +4,50 @@ mkdirp = require 'mkdirp'
 rimraf = require 'rimraf'
 path = require 'path'
 
-module.exports () =
-    if (arguments.length == 2)
-        root = "."
-        tree = arguments.0
-        done = arguments.1
-    else
-        root := arguments.0
-        tree := arguments.1
-        done := arguments.2
+module.exports (args, ...) =
+  if (args.length == 1)
+    root = "."
+    tree = args.0
+  else
+    root := args.0
+    tree := args.1
 
-    entries = flatten (tree, "#(root)/")
-    write (entries, done)
+  entries = flatten (tree, "#(root)/")
+  write (entries)!
 
 write (entries, done) =
-    write file (file path, written) =
-        mkdirp (path.dirname(file path))
-            fs.write file (file path, entries.files.(file path), written)
+  writeFile (filePath, written) =
+    mkdirp (path.dirname(filePath)) ^!
+    fs.writeFile (filePath, entries.files.(filePath), ^)!
 
-    async.for each series (entries.dirs, mkdirp) @(err)
-        if (err)
-            done (err)
-        else
-            async.for each (Object.keys (entries.files), write file) @(err)
-                done (err, destroyable (entries))
+  [dir <- entries, mkdirp(dir) ^!]
+  [file <- Object.keys(entries.files), writeFile!(file)]
+
+  destroyable (entries)
 
 destroyable (entries) =
-    {
-        destroy (done) =
-            async.for each series (Object.keys (entries.files), fs.unlink) @(err)
-                if (err)
-                    done (err)
-                else
-                    async.for each series (entries.dirs, rimraf, done)
-    }
+  {
+    destroy (done) =
+      [file <- Object.keys(entries.files), fs.unlink(file) ^!]
+      [dir <- entries.dirs, rimraf(dir, ^)!]
+  }
 
 flatten (obj, prefix) =
-    dirs = []
-    files = {}
-    for each @(key) in (Object.keys (obj))
-        object path = prefix + key
-        if (obj.(key).constructor == {}.constructor)
-            dirs.push(object path)
-            children = flatten (obj.(key), "#(object path)/")
-            dirs := dirs.concat(children.dirs)
-            merge (children.files) into (files)
-        else
-            files.(object path) = obj.(key)
+  dirs = []
+  files = {}
 
-    { dirs = dirs, files = files }
+  for each @(key) in (Object.keys (obj))
+    objectPath = prefix + key
+    if (obj.(key).constructor == {}.constructor)
+      dirs.push(objectPath)
+      children = flatten (obj.(key), "#(objectPath)/")
+      dirs := dirs.concat(children.dirs)
+      merge (children.files) into (files)
+    else
+      files.(objectPath) = obj.(key)
+
+  { dirs = dirs, files = files }
 
 merge (obj) into (other) =
-    for @(key) in (obj)
-        other.(key) = obj.(key)
+  for @(key) in (obj)
+    other.(key) = obj.(key)
