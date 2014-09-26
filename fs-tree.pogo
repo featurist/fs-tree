@@ -1,5 +1,4 @@
 fs = require 'fs'
-async = require 'async'
 mkdirp = require 'mkdirp'
 rimraf = require 'rimraf'
 path = require 'path'
