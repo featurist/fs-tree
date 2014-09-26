@@ -14,7 +14,8 @@
     "should": "^4.0.4"
   },
   "scripts": {
-    "test": "pogo -c ./fs-tree.pogo && mocha test/*.pogo"
+    "test": "pogo -c ./fs-tree.pogo && mocha test/*.pogo",
+    "prepublish": "pogo -c ./fs-tree.pogo"
   },
   "repository": {
     "type": "git",
