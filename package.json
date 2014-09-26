@@ -15,9 +15,18 @@
     "should": "^4.0.4"
   },
   "scripts": {
-    "test": "./node_modules/.bin/pogo -c ./fs-tree.pogo && ./node_modules/.bin/mocha test/*.pogo"
+    "test": "pogo -c ./fs-tree.pogo && mocha test/*.pogo"
   },
-  "repository": "https://github.com/featurist/fs-tree.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/featurist/fs-tree.git"
+  },
   "author": "Josh Chisholm",
-  "license": "BSD"
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/featurist/fs-tree/issues"
+  },
+  "homepage": "https://github.com/featurist/fs-tree",
+  "directories": {
+  }
 }
