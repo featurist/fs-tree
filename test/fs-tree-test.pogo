@@ -6,7 +6,7 @@ fsTree = require '../fs-tree'
   fs.readFileSync(path, "utf-8").should.equal (contents)
 
 describe "fs-tree"
-  after
+  beforeEach
     rimraf.sync 'public'
 
   it "makes directories and files from nested properties"
@@ -50,3 +50,8 @@ describe "fs-tree"
     fs.existsSync "./public".should.be.true
     fs.existsSync "./public/a".should.be.false
     fs.existsSync "./public/c".should.be.false
+
+  it "can create binary files with a Buffer"
+    tree = fsTree! "public" { a = { b = new(Buffer [1, 2, 3, 4, 5]) }, c = "2" }
+    buffer = fs.readFile 'public/a/b' ^!
+    buffer.should.eql (new (Buffer [1, 2, 3, 4, 5]))

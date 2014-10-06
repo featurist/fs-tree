@@ -19,7 +19,7 @@ write (entries, done) =
     mkdirp (path.dirname(filePath)) ^!
     fs.writeFile (filePath, entries.files.(filePath), ^)!
 
-  [dir <- entries, mkdirp(dir) ^!]
+  [dir <- entries.dirs, mkdirp(dir) ^!]
   [file <- Object.keys(entries.files), writeFile!(file)]
 
   destroyable (entries)
