@@ -51,6 +51,18 @@ describe "fs-tree"
     fs.existsSync "./public/a".should.be.false
     fs.existsSync "./public/c".should.be.false
 
+  context 'with a binary file'
+    beforeEach
+      fs.writeFile! 'test/binary' 'haha' ^
+
+    afterEach
+      rimraf.sync 'test/binary'
+
+    it "can create binary files with a stream"
+      tree = fsTree! "public" { a = { b = fs.createReadStream 'test/binary' }, c = "2" }
+      buffer = fs.readFile 'public/a/b' 'utf-8' ^!
+      buffer.should.eql ('haha')
+
   it "can create binary files with a Buffer"
     tree = fsTree! "public" { a = { b = new(Buffer [1, 2, 3, 4, 5]) }, c = "2" }
     buffer = fs.readFile 'public/a/b' ^!

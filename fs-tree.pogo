@@ -17,7 +17,15 @@ module.exports (args, ...) =
 write (entries, done) =
   writeFile (filePath, written) =
     mkdirp (path.dirname(filePath)) ^!
-    fs.writeFile (filePath, entries.files.(filePath), ^)!
+    entry = entries.files.(filePath)
+
+    if (entry @and entry.pipe :: Function)
+      promise! @(result, error)
+        entry.pipe (fs.createWriteStream (filePath))
+        entry.on 'end' (result)
+        entry.on 'error' (error)
+    else
+      fs.writeFile (filePath, entry, ^)!
 
   [dir <- entries.dirs, mkdirp(dir) ^!]
   [file <- Object.keys(entries.files), writeFile!(file)]

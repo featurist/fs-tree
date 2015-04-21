@@ -26,6 +26,8 @@ Builds a hierarchy of directories and files as a single asynchronous operation.
     ./ideas/colours/green.txt  (apples, pears)
     ./ideas/colours/white.txt  (snow)
 
+Each entry can be a string, a `Buffer` or a node stream (anything that has a `.pipe()` method).
+
 ### The root directory
 
 By default the hierarchy is created in the current working directory.
