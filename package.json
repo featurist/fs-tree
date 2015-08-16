@@ -8,9 +8,8 @@
     "rimraf": "~2.2.8"
   },
   "devDependencies": {
-    "bluebird": "^2.3.2",
     "mocha": "^1.21.4",
-    "pogo": "^0.9.5",
+    "pogo": "^0.10.0",
     "should": "^4.0.4"
   },
   "scripts": {
